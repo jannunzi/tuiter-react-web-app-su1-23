@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 function Todos() {
   const [newTodoTitle, setNewTodoTitle] = useState("New Todo 234");
-  //   let idCounter = 100;
   const [todos, setTodos] = useState([
     { id: 1, title: "Learn React", completed: false },
     { id: 2, title: "Learn JSX", completed: true },
@@ -11,10 +10,7 @@ function Todos() {
     { id: 6, title: "Learn Navigate", completed: false },
     { id: 7, title: "Learn Link", completed: false },
   ]);
-  //   const todos = state[0];
-  //   const setTodos = state[1];
   const createTodo = () => {
-    // alert("Create Todo");
     const newTodo = {
       id: new Date().getTime(),
       title: newTodoTitle,
@@ -26,7 +22,6 @@ function Todos() {
     setNewTodoTitle("");
   };
   const deleteTodo = (todo) => {
-    // alert("Delete Todo " + todo.title);
     const newTodos = todos.filter((t) => t.id !== todo.id);
     setTodos(newTodos);
   };
@@ -99,9 +94,8 @@ function Todos() {
                 onChange={(event) => {
                   console.log(event.target.value);
                   const newTodo = { ...todo, title: event.target.value };
-                  //   todos[ndx] = newTodo;
                   const newTodos = todos.map((t) =>
-                    t.id === newTodo.id ? newTodo : todo
+                    t.id === newTodo.id ? newTodo : t
                   );
                   setTodos(newTodos);
                 }}

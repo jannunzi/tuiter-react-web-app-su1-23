@@ -6,5 +6,6 @@
   { "path": "/labs/a6", "label": "A6" },
   { "path": "/labs/a7", "label": "A7" },
   { "path": "/labs/a8", "label": "Assignment 8" },
-  { "path": "/todos", "label": "Todos" }
+  { "path": "/todos", "label": "Todos" },
+  { "path": "/todos-redux", "label": "Todos Redux" }
 ]

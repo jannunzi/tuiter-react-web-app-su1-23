@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import NewTodoItem from "./new-todo-item";
+import TodoItem from "./todo-item";
 function Todos() {
   const [newTodoTitle, setNewTodoTitle] = useState("New Todo 234");
   const [todos, setTodos] = useState([
@@ -38,72 +40,20 @@ function Todos() {
     <div>
       <h1>Todos</h1>
       <ul className="list-group">
-        <li className="list-group-item">
-          <button onClick={createTodo} className="float-end btn btn-success">
-            Add
-          </button>
-          <input
-            value={newTodoTitle}
-            type="text"
-            onChange={(event) => {
-              setNewTodoTitle(event.target.value);
-            }}
-            className="form-control w-75"
+        <NewTodoItem
+          createTodo={createTodo}
+          newTodoTitle={newTodoTitle}
+          setNewTodoTitle={setNewTodoTitle}
+        />
+        {todos.map((todo) => (
+          <TodoItem
+            key={todo.id}
+            todo={todo}
+            todos={todos}
+            updateTodo={updateTodo}
+            deleteTodo={deleteTodo}
+            setTodos={setTodos}
           />
-        </li>
-        {todos.map((todo, ndx) => (
-          <li key={todo.id} className="list-group-item">
-            <input
-              onClick={(event) => {
-                updateTodo({ ...todo, completed: !todo.completed });
-              }}
-              type="checkbox"
-              checked={todo.completed}
-              className="me-2 float-start"
-            />
-            <button
-              onClick={() => deleteTodo(todo)}
-              className="btn btn-danger float-end"
-            >
-              Delete
-            </button>
-            {!todo.editing && (
-              <button
-                onClick={() => {
-                  updateTodo({ ...todo, editing: true });
-                }}
-                className="float-end btn btn-warning"
-              >
-                Edit
-              </button>
-            )}
-            {todo.editing && (
-              <button
-                onClick={() => {
-                  updateTodo({ ...todo, editing: false });
-                }}
-                className="float-end btn btn-warning"
-              >
-                Save
-              </button>
-            )}
-            {todo.editing ? (
-              <input
-                className="float-start form-control w-50"
-                value={todo.title}
-                onChange={(event) => {
-                  console.log(event.target.value);
-                  const newTodo = { ...todo, title: event.target.value };
-                  const newTodos = todos.map((t) =>
-                    t.id === newTodo.id ? newTodo : t
-                  );
-                  setTodos(newTodos);
-                }}
-              />
-            ) : (
-              <span>{todo.title}</span>
-            )}
-          </li>
         ))}
       </ul>
       <pre>{JSON.stringify(todos, null, 2)}</pre>

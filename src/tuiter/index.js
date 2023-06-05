@@ -4,27 +4,37 @@ import HomeScreen from "./home-screen";
 import NavigationSidebar from "./navigation-sidebar";
 import WhoToFollowList from "./who-to-follow";
 import WhoToFollowListItem from "./who-to-follow/who-to-follow-item";
+import tuitsReducer from "./reducers/tuits-reducer";
+import { configureStore } from "@reduxjs/toolkit";
+import { Provider } from "react-redux";
+
+const store = configureStore({
+  reducer: {
+    tuits: tuitsReducer,
+  },
+});
 
 function Tuiter() {
   return (
-    <div className="row">
-      <div className="col-2">
-        <NavigationSidebar />
-      </div>
+    <Provider store={store}>
+      <div className="row">
+        <div className="col-2">
+          <NavigationSidebar />
+        </div>
 
-      <div className="col-7">
-        <Routes>
-          <Route path="home" element={<HomeScreen />} />
-          <Route path="explore" element={<ExploreScreen />} />
-          <Route path="notifications" element={<h1>Notifications</h1>} />
-          <Route path="messages" element={<h1>Messages</h1>} />
-          <Route path="bookmarks" element={<h1>Bookmarks</h1>} />
-        </Routes>
-      </div>
+        <div className="col-7">
+          <Routes>
+            <Route path="home" element={<HomeScreen />} />
+            <Route path="explore" element={<ExploreScreen />} />
+            <Route path="notifications" element={<h1>Notifications</h1>} />
+            <Route path="messages" element={<h1>Messages</h1>} />
+            <Route path="bookmarks" element={<h1>Bookmarks</h1>} />
+          </Routes>
+        </div>
 
-      <div className="col-3">
-        <WhoToFollowList />
-        {/* <ul className="list-group">
+        <div className="col-3">
+          <WhoToFollowList />
+          {/* <ul className="list-group">
           <li className="list-group-item">
             <h4>Who to follow</h4>
           </li>
@@ -34,8 +44,9 @@ function Tuiter() {
           <WhoToFollowListItem />
           <WhoToFollowListItem />
         </ul> */}
+        </div>
       </div>
-    </div>
+    </Provider>
   );
 }
 

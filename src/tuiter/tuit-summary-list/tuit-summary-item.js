@@ -1,4 +1,7 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { deleteTuitThunk } from "../services/tuits-thunks";
+
 const TuitSummaryItem = ({
   tuit = {
     topic: "Space",
@@ -9,10 +12,22 @@ const TuitSummaryItem = ({
     image: "tesla.png",
   },
 }) => {
+  const dispatch = useDispatch();
+
+  const deleteTuitHandler = (id) => {
+    dispatch(deleteTuitThunk(id));
+  };
+
   return (
     <li className="list-group-item">
       <div className="row">
         <div className="col-10">
+          <button
+            onClick={() => deleteTuitHandler(tuit._id)}
+            className="float-end"
+          >
+            delete
+          </button>
           <div>
             {tuit.userName} . {tuit.time}
           </div>

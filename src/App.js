@@ -8,6 +8,7 @@ import Navigation from "./nav";
 import Routing from "./labs/a3/routing";
 import Todos from "./todos";
 import TodosRedux from "./todos-redux";
+import Users from "./users";
 // import "./App.css";
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
       <div className="container">
         <Navigation />
         <Routes>
+          <Route path="/users/*" element={<Users />} />
           <Route path="/todos-redux/*" element={<TodosRedux />} />
           <Route path="/todos/*" element={<Todos />} />
           <Route path="/" element={<Navigate to="/labs/a3" />} />

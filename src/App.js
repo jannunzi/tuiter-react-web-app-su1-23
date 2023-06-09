@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import Labs from "./labs";
 import logo from "./logo.svg";
 import Tuiter from "./tuiter";
@@ -9,27 +10,68 @@ import Routing from "./labs/a3/routing";
 import Todos from "./todos";
 import TodosRedux from "./todos-redux";
 import Users from "./users";
+import UserListRedux from "./users/users-list-redux";
 // import "./App.css";
+import { Provider } from "react-redux";
+import { store } from "./tuiter/store";
+import LoginScreen, { qwe, asd } from "./users/login";
+import RegisterScreen from "./users/register";
+import ProfileScreen from "./users/profile";
+import UsersContextLoader from "./users/users-context-loader";
+import ProtectedRoute from "./users/protected-route";
 
-function App() {
+function App({ wer, ert, rt }) {
   return (
-    <BrowserRouter>
-      <div className="container">
-        <Navigation />
-        <Routes>
-          <Route path="/users/*" element={<Users />} />
-          <Route path="/todos-redux/*" element={<TodosRedux />} />
-          <Route path="/todos/*" element={<Todos />} />
-          <Route path="/" element={<Navigate to="/labs/a3" />} />
-          <Route path="/tuiter/*" element={<Tuiter />} />
-          <Route path="/labs" element={<Labs />} />
-          <Route path="/labs/a3" element={<Assignment3 />} />
-          <Route path="/labs/a4" element={<Assignment4 />} />
-          <Route path="/labs/a3/routing/*" element={<Routing />} />
-          <Route path="*" element={<h1>Not Found</h1>} />
-        </Routes>
-      </div>
-    </BrowserRouter>
+    <Provider store={store}>
+      <UsersContextLoader>
+        <BrowserRouter>
+          <div className="container">
+            <Navigation />
+            <Routes>
+              <Route
+                path="/users/*"
+                element={
+                  <div className="row">
+                    <div className="col-6">
+                      <Users />
+                    </div>
+                    <div className="col-6">
+                      <UserListRedux />
+                    </div>
+                  </div>
+                }
+              />
+              <Route path="/login" element={<LoginScreen />} />
+              <Route path="/register" element={<RegisterScreen />} />
+              <Route
+                path="/profile"
+                element={
+                  <ProtectedRoute>
+                    <ProfileScreen />
+                  </ProtectedRoute>
+                }
+              />
+              <Route path="/todos-redux/*" element={<TodosRedux />} />
+              <Route path="/todos/*" element={<Todos />} />
+              <Route path="/" element={<Navigate to="/labs/a3" />} />
+              <Route
+                path="/tuiter/*"
+                element={
+                  <ProtectedRoute>
+                    <Tuiter />
+                  </ProtectedRoute>
+                }
+              />
+              <Route path="/labs" element={<Labs />} />
+              <Route path="/labs/a3" element={<Assignment3 />} />
+              <Route path="/labs/a4" element={<Assignment4 />} />
+              <Route path="/labs/a3/routing/*" element={<Routing />} />
+              <Route path="*" element={<h1>Not Found</h1>} />
+            </Routes>
+          </div>
+        </BrowserRouter>
+      </UsersContextLoader>
+    </Provider>
   );
 }
 

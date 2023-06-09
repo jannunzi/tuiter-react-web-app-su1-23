@@ -4,9 +4,12 @@ import HomeScreen from "./home-screen";
 import NavigationSidebar from "./navigation-sidebar";
 import WhoToFollowList from "./who-to-follow";
 import WhoToFollowListItem from "./who-to-follow/who-to-follow-item";
+// import { Provider } from "react-redux";
+// import { store } from "./store";
 
 function Tuiter() {
   return (
+    // <Provider store={store}>
     <div className="row">
       <div className="col-2">
         <NavigationSidebar />
@@ -36,6 +39,7 @@ function Tuiter() {
         </ul> */}
       </div>
     </div>
+    // </Provider>
   );
 }
 

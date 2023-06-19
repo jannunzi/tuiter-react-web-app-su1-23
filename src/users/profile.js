@@ -48,29 +48,37 @@ function ProfileScreen() {
   return (
     <div>
       <h1>Profile</h1>
-      <label>Username</label>
-      <input className="form-control" value={profile.username} readOnly />
-      <label>Password</label>
-      <input
-        className="form-control"
-        value={profile.password}
-        type="password"
-      />
-      <label>First Name</label>
-      <input
-        className="form-control"
-        value={profile.firstName}
-        onChange={(e) => setProfile({ ...profile, firstName: e.target.value })}
-      />
-      <label>Last Name</label>
-      <input
-        className="form-control"
-        value={profile.lastName}
-        onChange={(e) => setProfile({ ...profile, lastName: e.target.value })}
-      />
-      <button onClick={handleUpdate} className="btn btn-primary">
-        Update
-      </button>
+      {profile && (
+        <>
+          <label>Username</label>
+          <input className="form-control" value={profile.username} readOnly />
+          <label>Password</label>
+          <input
+            className="form-control"
+            value={profile.password}
+            type="password"
+          />
+          <label>First Name</label>
+          <input
+            className="form-control"
+            value={profile.firstName}
+            onChange={(e) =>
+              setProfile({ ...profile, firstName: e.target.value })
+            }
+          />
+          <label>Last Name</label>
+          <input
+            className="form-control"
+            value={profile.lastName}
+            onChange={(e) =>
+              setProfile({ ...profile, lastName: e.target.value })
+            }
+          />
+          <button onClick={handleUpdate} className="btn btn-primary">
+            Update
+          </button>
+        </>
+      )}
       <button onClick={handleLogout} className="btn btn-danger">
         Logout
       </button>

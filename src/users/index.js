@@ -36,7 +36,7 @@ function Users() {
       const users = await getUsers();
       setUsers(users);
     };
-    // fetchUsers();
+    fetchUsers();
   }, []);
   return (
     <div>

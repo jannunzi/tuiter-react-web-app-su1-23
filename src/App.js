@@ -32,12 +32,10 @@ function App({ wer, ert, rt }) {
                 path="/users/*"
                 element={
                   <div className="row">
-                    <div className="col-6">
+                    <div className="col-12">
                       <Users />
                     </div>
-                    <div className="col-6">
-                      <UserListRedux />
-                    </div>
+                    <div className="col-6">{/* <UserListRedux /> */}</div>
                   </div>
                 }
               />

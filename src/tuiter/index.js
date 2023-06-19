@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router";
+import ProfileScreen from "../users/profile";
 import ExploreScreen from "./explore-screen";
 import HomeScreen from "./home-screen";
 import NavigationSidebar from "./navigation-sidebar";
@@ -22,6 +23,7 @@ function Tuiter() {
           <Route path="notifications" element={<h1>Notifications</h1>} />
           <Route path="messages" element={<h1>Messages</h1>} />
           <Route path="bookmarks" element={<h1>Bookmarks</h1>} />
+          <Route path="profile" element={<ProfileScreen />} />
         </Routes>
       </div>
 

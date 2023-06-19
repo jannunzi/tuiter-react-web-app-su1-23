@@ -18,9 +18,14 @@ function Navigation() {
   return (
     <div className="nav nav-pills mt-2 mb-2">
       {!currentUser && (
-        <Link className="nav-link" to="/login">
-          Login
-        </Link>
+        <>
+          <Link className="nav-link" to="/login">
+            Login
+          </Link>
+          <Link className="nav-link" to="/register">
+            Register
+          </Link>
+        </>
       )}
       {currentUser && (
         <Link className="nav-link" to="/profile">

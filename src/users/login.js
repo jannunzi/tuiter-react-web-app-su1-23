@@ -8,7 +8,7 @@ const LoginScreen = () => {
   const dispatch = useDispatch();
   const handleLogin = async () => {
     try {
-      dispatch(loginThunk(user));
+      await dispatch(loginThunk(user));
       navigate("/profile");
     } catch (error) {
       console.error(error);

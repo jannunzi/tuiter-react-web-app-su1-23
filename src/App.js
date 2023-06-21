@@ -2,7 +2,14 @@ import React, { useEffect, useState } from "react";
 import Labs from "./labs";
 import logo from "./logo.svg";
 import Tuiter from "./tuiter";
-import { BrowserRouter, Routes, Route, Link, Navigate } from "react-router-dom";
+import {
+  HashRouter,
+  BrowserRouter,
+  Routes,
+  Route,
+  Link,
+  Navigate,
+} from "react-router-dom";
 import Assignment3 from "./labs/a3";
 import Assignment4 from "./labs/a4";
 import Navigation from "./nav";
@@ -25,7 +32,7 @@ function App({ wer, ert, rt }) {
   return (
     <Provider store={store}>
       <UsersContextLoader>
-        <BrowserRouter>
+        <HashRouter>
           <div className="container-fluid">
             {/* <Navigation /> */}
             <Routes>
@@ -69,7 +76,7 @@ function App({ wer, ert, rt }) {
               <Route path="*" element={<h1>Not Found</h1>} />
             </Routes>
           </div>
-        </BrowserRouter>
+        </HashRouter>
       </UsersContextLoader>
     </Provider>
   );

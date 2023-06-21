@@ -2,29 +2,29 @@ import axios from "axios";
 
 const SERVER = "https://tuiter-node-server-app-su1-23.onrender.com";
 const USER_API = `${SERVER}/users`;
-const BASE_API = `${SERVER}/api`;
+const BASE_API = "http://localhost:4000"; //process.env.BASE_API; //`${SERVER}/api`;
 
 const request = axios.create({
   withCredentials: true,
 });
 
 export const login = async (user) => {
-  const response = await request.post(`${BASE_API}/login`, user);
+  const response = await request.post(`${BASE_API}/api/login`, user);
   return response.data;
 };
 
 export const register = async (user) => {
-  const response = await request.post(`${BASE_API}/register`, user);
+  const response = await request.post(`${BASE_API}/api/register`, user);
   return response.data;
 };
 
 export const logout = async () => {
-  const response = await request.post(`${BASE_API}/logout`);
+  const response = await request.post(`${BASE_API}/api/logout`);
   return response.data;
 };
 
 export const getProfile = async () => {
-  const response = await request.get(`${BASE_API}/profile`);
+  const response = await request.get(`${BASE_API}/api/profile`);
   return response.data;
 };
 

@@ -9,7 +9,7 @@ const RegisterScreen = () => {
   const handleRegister = async () => {
     try {
       await dispatch(registerThunk(user));
-      navigate("/profile");
+      navigate("/project/profile");
     } catch (error) {
       console.error(error);
     }

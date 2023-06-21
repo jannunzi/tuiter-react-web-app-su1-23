@@ -9,7 +9,7 @@ const LoginScreen = () => {
   const handleLogin = async () => {
     try {
       await dispatch(loginThunk(user));
-      navigate("/profile");
+      navigate("/project/profile");
     } catch (error) {
       console.error(error);
     }

@@ -19,15 +19,17 @@ import RegisterScreen from "./users/register";
 import ProfileScreen from "./users/profile";
 import UsersContextLoader from "./users/users-context-loader";
 import ProtectedRoute from "./users/protected-route";
+import Project from "./project";
 
 function App({ wer, ert, rt }) {
   return (
     <Provider store={store}>
       <UsersContextLoader>
         <BrowserRouter>
-          <div className="container">
-            <Navigation />
+          <div className="container-fluid">
+            {/* <Navigation /> */}
             <Routes>
+              <Route path="/project/*" element={<Project />} />
               <Route
                 path="/users/*"
                 element={
@@ -51,7 +53,7 @@ function App({ wer, ert, rt }) {
               />
               <Route path="/todos-redux/*" element={<TodosRedux />} />
               <Route path="/todos/*" element={<Todos />} />
-              <Route path="/" element={<Navigate to="/labs/a3" />} />
+              <Route path="/" element={<Navigate to="/project" />} />
               <Route
                 path="/tuiter/*"
                 element={

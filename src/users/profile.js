@@ -3,7 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { profileThunk, logoutThunk, updateUserThunk } from "./users-thunks";
 import { useNavigate } from "react-router";
 import * as tuitsService from "../tuiter/tuits-service";
+import * as napsterService from "../project/napster-service";
 function ProfileScreen() {
+  const [albumsIlike, setAlbumsIlike] = useState([]);
   const { currentUser } = useSelector((state) => state.users);
   const [profile, setProfile] = useState(currentUser);
   const [myTuits, setMyTuits] = useState([]);
@@ -12,7 +14,7 @@ function ProfileScreen() {
 
   const handleLogout = () => {
     dispatch(logoutThunk());
-    navigate("/login");
+    navigate("/project/search");
   };
 
   const handleUpdate = async () => {
@@ -23,14 +25,20 @@ function ProfileScreen() {
     }
   };
 
+  const fetchMyLikes = async () => {
+    const albums = await napsterService.findAlbumsILike();
+    setAlbumsIlike(albums);
+  };
+
   useEffect(() => {
+    fetchMyLikes();
     const fetchProfile = async () => {
       try {
         const { payload } = await dispatch(profileThunk());
         setProfile(payload);
       } catch (error) {
         console.error(error);
-        navigate("/login");
+        navigate("/project/search");
       }
     };
     const fetchMyTuits = async () => {
@@ -82,7 +90,7 @@ function ProfileScreen() {
       <button onClick={handleLogout} className="btn btn-danger">
         Logout
       </button>
-      <pre>{JSON.stringify(myTuits, null, 2)}</pre>
+      <pre>{JSON.stringify(albumsIlike, null, 2)}</pre>
     </div>
   );
 }

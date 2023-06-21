@@ -1,4 +1,5 @@
 [
+  { "path": "/project", "label": "Project" },
   { "path": "/users", "label": "Users" },
   { "path": "/tuiter", "label": "Tuiter" },
   { "path": "/labs/a3", "label": "A3" },

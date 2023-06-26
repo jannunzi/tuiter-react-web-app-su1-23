@@ -7,6 +7,7 @@ import { KEY } from "./napster-service";
 import LoginScreen from "../users/login";
 import RegisterScreen from "../users/register";
 import ProfileScreen from "../users/profile";
+import ProfilePublic from "./profile-public";
 
 function Project() {
   return (
@@ -23,6 +24,7 @@ function Project() {
             <Route path="login" element={<LoginScreen />} />
             <Route path="register" element={<RegisterScreen />} />
             <Route path="profile" element={<ProfileScreen />} />
+            <Route path="profile/:profileId" element={<ProfilePublic />} />
           </Routes>
         </div>
       </div>

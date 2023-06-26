@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import * as service from "./napster-service";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 function DetailsScreen() {
   const { currentUser } = useSelector((state) => state.users);
   const { id } = useParams();
   const [albumDetails, setAlbumDetails] = useState();
   const [tracks, setTracks] = useState();
+  const [people, setPeople] = useState();
   const fetchAlbumDetails = async () => {
     const album = await service.getAlbumDetails(id);
     setAlbumDetails(album);
@@ -24,9 +26,15 @@ function DetailsScreen() {
     });
   };
 
+  const findPeopleWhoLikeAlbum = async () => {
+    const people = await service.findPeopleWhoLikeAlbum(id);
+    setPeople(people);
+  };
+
   useEffect(() => {
     fetchAlbumDetails();
     fetchAlbumTracks();
+    findPeopleWhoLikeAlbum();
   }, []);
 
   return (
@@ -41,6 +49,22 @@ function DetailsScreen() {
               <button onClick={handleLikeAlbum}>Like</button>
               <button>Dislike</button>
               <textarea></textarea>
+            </div>
+          )}
+          {people && (
+            <div>
+              <h2>People who like this album</h2>
+              <div className="list-group">
+                {people.map((person) => (
+                  <Link
+                    className="list-group-item"
+                    to={`/project/profile/${person._id}`}
+                    key={person._id}
+                  >
+                    {person.username}
+                  </Link>
+                ))}
+              </div>
             </div>
           )}
           <hr />

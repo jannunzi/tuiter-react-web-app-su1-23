@@ -45,3 +45,38 @@ export const findAlbumsILike = async () => {
   const response = await request.get(`http://localhost:4000/api/albums/i/like`);
   return response.data;
 };
+
+export const findPeopleWhoLikeAlbum = async (albumId) => {
+  const response = await request.get(
+    `http://localhost:4000/api/albums/albumId/${albumId}/likes`
+  );
+  return response.data;
+};
+
+export const createFollow = async (followed) => {
+  const response = await request.post(
+    `http://localhost:4000/api/follows/followed/${followed}`
+  );
+  return response.data;
+};
+
+export const findPeopleIFollow = async () => {
+  const response = await request.get(
+    `http://localhost:4000/api/follows/i/followed`
+  );
+  return response.data;
+};
+
+export const findPeopleWhoFollowMe = async () => {
+  const response = await request.get(
+    `http://localhost:4000/api/follows/i/followed/me`
+  );
+  return response.data;
+};
+
+export const findFollowsByFollowed = async (followed) => {
+  const response = await request.get(
+    `http://localhost:4000/api/follows/followed/${followed}`
+  );
+  return response.data;
+};
